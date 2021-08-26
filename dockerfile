@@ -13,9 +13,11 @@ RUN apk add --no-cache \
       postgresql-dev \
       mariadb-dev;
 
-# TODO: install django app requirements and gunicorn
+# install dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r /opt/cloud_test_app/requirements.txt
 
 EXPOSE 8000
 WORKDIR /opt
 
-# TODO: set entrypoint and command (see entrypoint.sh)
+ENTRYPOINT ["/opt/entrypoint.sh"]
